@@ -61,15 +61,50 @@ public class Task
 	}
 	
 	//set methods
-	public void setInfo()
+	public void setInfo(int pri, String n, String d, int du, int s, int start, int fin)
 	{
-		info[0] = Integer.toString(priority);
-		info[1]=name;
-		info[2]=desc;
-		info[3]=Integer.toString(due);
-		if(status==0)
+		String dueDate = Integer.toString(du);
+		
+		info[0] = Integer.toString(pri);
+		info[1]= n;
+		info[2]= d;
+		
+		String year;
+		String month;
+		String day;
+		year = dueDate.substring(0, 3);
+		month = dueDate.substring(4, 5);
+		day = dueDate.substring(6, 7);
+		String displayDat = year + "/" + month + "/" + day;
+		
+		info[3]= displayDat;
+		if(s == 0)
 		{
-			//check if edit menu's check=box is checked
+			info[4] = "Not started";
+		}
+		else if (s == 1)
+		{
+			String startDate = Integer.toString(start);
+			String yr;
+			String mo;
+			String da;
+			yr = startDate.substring(0, 3);
+			mo = startDate.substring(4, 5);
+			da = startDate.substring(6, 7);
+			String displayDate = yr + "/" + mo + "/" + da;
+			info[4] = displayDate;
+		}
+		else if (s == 2)
+		{
+			String finishedDate = Integer.toString(fin);
+			String yr;
+			String mo;
+			String da;
+			yr = finishedDate.substring(0, 3);
+			mo = finishedDate.substring(4, 5);
+			da = finishedDate.substring(6, 7);
+			String displayDate = yr + "/" + mo + "/" + da;
+			info[4] = displayDate;
 		}
 	}
 	

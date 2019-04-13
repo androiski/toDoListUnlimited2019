@@ -57,7 +57,6 @@ public class displayMenu extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();	
 				AddMenu menuadd = new AddMenu();
 				menuadd.setVisible(true);
 			}
