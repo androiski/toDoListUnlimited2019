@@ -43,6 +43,7 @@ public class AddMenu extends JFrame {
 	public AddMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 693, 397);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -67,17 +68,17 @@ public class AddMenu extends JFrame {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"YEAR", "2019", "2020", "2021", "2022", "2023", "2024"}));
-		comboBox.setBounds(153, 147, 60, 20);
+		comboBox.setBounds(153, 147, 86, 20);
 		contentPane.add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"MONTH", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
-		comboBox_1.setBounds(223, 147, 99, 20);
+		comboBox_1.setBounds(239, 147, 99, 20);
 		contentPane.add(comboBox_1);
 		
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"DAY", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		comboBox_2.setBounds(332, 147, 60, 20);
+		comboBox_2.setBounds(332, 147, 86, 20);
 		contentPane.add(comboBox_2);
 		
 		JLabel lblDateStarted = new JLabel("Date Started:");
@@ -86,17 +87,17 @@ public class AddMenu extends JFrame {
 		
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"YEAR", "2019", "2020", "2021", "2022", "2023", "2024"}));
-		comboBox_3.setBounds(153, 235, 60, 20);
+		comboBox_3.setBounds(153, 235, 86, 20);
 		contentPane.add(comboBox_3);
 		
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"MONTH", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
-		comboBox_4.setBounds(223, 235, 99, 20);
+		comboBox_4.setBounds(239, 235, 99, 20);
 		contentPane.add(comboBox_4);
 		
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"DAY", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		comboBox_5.setBounds(332, 235, 60, 20);
+		comboBox_5.setBounds(332, 235, 86, 20);
 		contentPane.add(comboBox_5);
 		
 		JButton btnNewButton = new JButton("FINISH\r\n");
