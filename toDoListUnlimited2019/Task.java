@@ -72,10 +72,10 @@ public class Task
 		String year;
 		String month;
 		String day;
-		year = dueDate.substring(0, 3);
-		month = dueDate.substring(4, 5);
-		day = dueDate.substring(6, 7);
-		String displayDat = year + "/" + month + "/" + day;
+		year = dueDate.substring(0, 4);
+		month = dueDate.substring(4, 6);
+		day = dueDate.substring(6, 8);
+		String displayDat = day + "/" + month + "/" + year;
 		
 		info[3]= displayDat;
 		if(s == 0)
@@ -88,10 +88,10 @@ public class Task
 			String yr;
 			String mo;
 			String da;
-			yr = startDate.substring(0, 3);
-			mo = startDate.substring(4, 5);
-			da = startDate.substring(6, 7);
-			String displayDate = yr + "/" + mo + "/" + da;
+			yr = startDate.substring(0, 4);
+			mo = startDate.substring(4, 6);
+			da = startDate.substring(6, 8);
+			String displayDate = da + "/" + mo + "/" + yr;
 			info[4] = displayDate;
 		}
 		else if (s == 2)
@@ -103,7 +103,7 @@ public class Task
 			yr = finishedDate.substring(0, 3);
 			mo = finishedDate.substring(4, 5);
 			da = finishedDate.substring(6, 7);
-			String displayDate = yr + "/" + mo + "/" + da;
+			String displayDate = da + "/" + mo + "/" + yr;
 			info[4] = displayDate;
 		}
 	}

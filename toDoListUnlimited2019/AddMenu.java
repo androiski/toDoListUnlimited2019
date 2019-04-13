@@ -295,17 +295,12 @@ public class AddMenu extends JFrame {
 						newTask.setDue(dDate);
 						newTask.setInfo(0, name, desc, dDate, status, 0, 0);
 					}
-					
-					
+					String[] arr = newTask.getInfo();
 					dispose();
-					
 				}
 			}
 		});
 		btnNewButton.setBounds(475, 125, 152, 65);
 		contentPane.add(btnNewButton);
-		
-
-
 	}
 }
