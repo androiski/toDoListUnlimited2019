@@ -69,12 +69,13 @@ public class MainMenu extends JFrame {
 		btnNewButton.setBounds(452, 366, 125, 27);
 		getContentPane().add(btnNewButton);
 		
-		JList list = new JList();
-		list.setBounds(26, 39, 704, 266);
-		contentPane.add(list);
-		
 		JList list_1 = new JList();
 		list_1.setBounds(725, 169, 16, 1);
 		contentPane.add(list_1);
+		
+		JLabel lblToDoList = new JLabel("To Do List Unlimted 2019");
+		lblToDoList.setFont(new Font("Rockwell", Font.PLAIN, 40));
+		lblToDoList.setBounds(150, 0, 500, 100);
+		contentPane.add(lblToDoList);
 	}
 }

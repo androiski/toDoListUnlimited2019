@@ -14,6 +14,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class AddMenu extends JFrame {
 
@@ -59,7 +61,7 @@ public class AddMenu extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		lblDescription = new JLabel("Description:");
-		lblDescription.setBounds(71, 61, 72, 14);
+		lblDescription.setBounds(57, 56, 86, 14);
 		contentPane.add(lblDescription);
 		
 		JLabel lblDueDate = new JLabel("Due Date:");
