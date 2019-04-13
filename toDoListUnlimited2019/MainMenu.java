@@ -43,6 +43,7 @@ public class MainMenu extends JFrame {
 	public MainMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 450);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -53,7 +54,7 @@ public class MainMenu extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				dispose();
 				AddMenu menuadd = new AddMenu();
 				menuadd.setVisible(true);
 			}
@@ -68,12 +69,13 @@ public class MainMenu extends JFrame {
 		btnNewButton.setBounds(452, 366, 125, 27);
 		getContentPane().add(btnNewButton);
 		
-		JList list = new JList();
-		list.setBounds(26, 39, 704, 266);
-		contentPane.add(list);
-		
 		JList list_1 = new JList();
 		list_1.setBounds(725, 169, 16, 1);
 		contentPane.add(list_1);
+		
+		JLabel lblToDoList = new JLabel("To Do List Unlimited 2019");
+		lblToDoList.setFont(new Font("Rockwell", Font.PLAIN, 49));
+		lblToDoList.setBounds(107, 67, 597, 85);
+		contentPane.add(lblToDoList);
 	}
 }
