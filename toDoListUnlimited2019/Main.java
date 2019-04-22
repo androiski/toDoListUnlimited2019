@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class Main {
 
@@ -68,13 +69,9 @@ public class Main {
 		//list
 		tasks = new Vector();
 		selectTask = new DefaultListModel<>();
-		taskList = new JList(selectTask);
-		//3rd was 459
-		taskList.setBounds(329, 11, 1450, 429);
-		frame.getContentPane().add(taskList);
 		frame.setResizable(false);
 		JLabel tName = new JLabel("Name:");
-		tName.setBounds(10, 55, 48, 14);
+		tName.setBounds(10, 21, 48, 14);
 		frame.getContentPane().add(tName);
 		
 		priTextField = new JTextField();
@@ -83,7 +80,7 @@ public class Main {
 		priTextField.setColumns(10);
 		
 		JLabel tDescription = new JLabel("Description:");
-		tDescription.setBounds(10, 80, 80, 14);
+		tDescription.setBounds(10, 45, 80, 14);
 		frame.getContentPane().add(tDescription);
 		
 		JLabel tPriority = new JLabel("Priority:");
@@ -135,19 +132,23 @@ public class Main {
 		chckbxStarted.setBounds(10, 208, 97, 23);
 		frame.getContentPane().add(chckbxStarted);
 		
+		JScrollPane descScrollPane = new JScrollPane();
+		descScrollPane.setBounds(102, 54, 175, 71);
+		frame.getContentPane().add(descScrollPane);
+		
+		JTextArea descTextPane = new JTextArea();
+		descScrollPane.setViewportView(descTextPane);
+		
+		
 		JLabel errMsg = new JLabel("");
 		errMsg.setBounds(21, 21, 256, 23);
 		errMsg.setForeground(Color.red);
 		frame.getContentPane().add(errMsg);
 		
 		nameTextField = new JTextField();
-		nameTextField.setBounds(100, 52, 177, 20);
+		nameTextField.setBounds(102, 24, 177, 20);
 		frame.getContentPane().add(nameTextField);
 		nameTextField.setColumns(10);
-		
-		JTextArea descTextPane = new JTextArea();
-		descTextPane.setBounds(100, 75, 177, 37);
-		frame.getContentPane().add(descTextPane);
 		chckbxStarted.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg1) {
 				if(chckbxStarted.isSelected()) {
@@ -425,7 +426,13 @@ public class Main {
 		loadButton.setBounds(140, 417, 109, 23);
 		frame.getContentPane().add(loadButton);
 		
+		JScrollPane taskListscrollPane = new JScrollPane();
+		taskListscrollPane.setBounds(330, 10, 1450, 430);
+		frame.getContentPane().add(taskListscrollPane);
+		taskList = new JList(selectTask);
+		taskListscrollPane.setViewportView(taskList);
 		
+
 		
 		
 	}
