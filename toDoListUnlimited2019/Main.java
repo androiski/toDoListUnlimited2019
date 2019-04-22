@@ -141,7 +141,7 @@ public class Main {
 		
 		
 		JLabel errMsg = new JLabel("");
-		errMsg.setBounds(21, 21, 256, 23);
+		errMsg.setBounds(10, 285, 256, 23);
 		errMsg.setForeground(Color.red);
 		frame.getContentPane().add(errMsg);
 		
