@@ -4,6 +4,12 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 import javax.swing.JFrame;
@@ -66,6 +72,7 @@ public class Main {
 		frame.setBounds(100, 100, 1500, 490);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("To Do List Unlimited 2019");
 		//list
 		tasks = new Vector();
 		selectTask = new DefaultListModel<>();
@@ -418,11 +425,77 @@ public class Main {
 		
 		//SAVE BUTTON
 		JButton saveButton = new JButton("SAVE");
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (nTasks >= 1)
+				{
+					try {
+						//creating an array of tasks in order to save task list to a file
+					    Task[] saveList = new Task[nTasks];
+					    for (int i = 0; i < nTasks; i++)
+					    {
+					    	saveList[i] = (Task)tasks.get(i);
+					    }
+					    //writing the temporary task array to file
+					    FileOutputStream fos = new FileOutputStream("saveList.ser");
+					    ObjectOutputStream oos = new ObjectOutputStream(fos);
+					    oos.flush();
+					    oos.writeObject(saveList);
+					    oos.close();
+					    errMsg.setText("");
+					}
+					catch (FileNotFoundException e) {
+					    e.printStackTrace();
+					}
+					catch (IOException e) {
+					    e.printStackTrace();
+					}
+				}
+				else
+				{
+					errMsg.setText("CANNOT SAVE EMPTY LIST");
+				}
+			}
+		});
 		saveButton.setBounds(140, 380, 109, 23);
 		frame.getContentPane().add(saveButton);
 		
 		//LOAD BUTTON
 		JButton loadButton = new JButton("LOAD");
+		loadButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+				    //creating inputstreams to read from file
+				    FileInputStream fis = new FileInputStream("saveList.ser");
+				    ObjectInputStream ois = new ObjectInputStream(fis);
+				    //creating a temporary array to read objects into
+				    Task[] savedList = (Task[]) ois.readObject();
+				    ois.close();
+				    if (nTasks >= 1)
+				    {
+				    	tasks.removeAllElements();
+				    	updateTaskList();
+				    	nTasks = 0;
+				    }
+				    for (int i = 0; i < savedList.length; i++)
+				    {
+				    	Task newTask = savedList[i];
+				    	tasks.add(newTask);
+				    	updateTaskList();
+				    	nTasks++;
+				    }
+				}
+				catch (FileNotFoundException e) {
+				    errMsg.setText("SAVED LIST DOES NOT EXIST");
+				}
+				catch (IOException e) {
+				    e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+				    e.printStackTrace();
+				}
+			}
+		});
 		loadButton.setBounds(140, 417, 109, 23);
 		frame.getContentPane().add(loadButton);
 		
@@ -436,6 +509,28 @@ public class Main {
 		
 		
 	}
+	
+	public void sortList()
+	{
+		//
+		if (sortBy == 0)
+		{
+			
+		}
+	}
+	
+	public void WriteObjectToFile(Object listItem) {
+		 
+        try {
+            FileOutputStream fileOut = new FileOutputStream("saveList.sav");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(listItem);
+            objectOut.close();
+ 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 	//fills JList with updated Vector information
 	//this method is called whenever we alter the JList after clicking the Finish, Delete, or Edit buttons.
 	public void updateTaskList()

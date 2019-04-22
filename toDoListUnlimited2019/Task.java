@@ -1,6 +1,8 @@
 package toDoListUnlimited2019;
 
-public class Task 
+import java.io.Serializable;
+
+public class Task implements Serializable
 {
      // declaration of variables
     private String name;
