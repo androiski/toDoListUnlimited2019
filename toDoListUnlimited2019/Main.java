@@ -465,9 +465,9 @@ public class Main {
 						descTextPane.setText("");
 						priTextField.setText("");
 						tasks.add(newTask);
-						//sortList();
-						updateTaskList();
 						nTasks++;
+						sortList();
+						updateTaskList();
 					}
 					
 				}
@@ -623,7 +623,7 @@ public class Main {
 		    {
 		    	sortList[i] = (Task)tasks.get(i);
 		    }
-		    //tasks.removeAllElements();
+		    tasks.removeAllElements();
 		    //now to sort
 		    
 		    int i, j;
@@ -638,14 +638,48 @@ public class Main {
 		    	}
 		    	sortList[i] = s;
 		    }
+		    //nTasks = 0;
 		    for (int x = 0; x < sortList.length; x++)
 		    {
 		    	Task newTask = sortList[x];
 		    	tasks.add(x, newTask);
-		    	updateTaskList();
+		    	//updateTaskList();
 		    	//nTasks++;
 		    }
 		    
+		}
+		//sort by description
+		else if (sortBy == 1)
+		{
+			//copy Vector contents into a temporary array and sort inside of the array
+			Task[] sortList = new Task[nTasks];
+		    for (int i = 0; i < nTasks; i++)
+		    {
+		    	sortList[i] = (Task)tasks.get(i);
+		    }
+		    tasks.removeAllElements();
+		    //now to sort
+		    
+		    int i, j;
+		    for (j = 1; j < nTasks; j++)
+		    {
+		    	Task s = sortList[j];
+		    	i = j;
+		    	while (i > 0 && sortList[i - 1].getDesc().compareTo(s.getDesc()) > 0)
+		    	{
+		    		sortList[i] = sortList[i - 1];
+		    		--i;
+		    	}
+		    	sortList[i] = s;
+		    }
+		    //nTasks = 0;
+		    for (int x = 0; x < sortList.length; x++)
+		    {
+		    	Task newTask = sortList[x];
+		    	tasks.add(x, newTask);
+		    	//updateTaskList();
+		    	//nTasks++;
+		    }
 		}
 	}
 	
