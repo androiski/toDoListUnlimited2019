@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -189,7 +190,7 @@ public class Main {
 		
 		
 		JLabel errMsg = new JLabel("");
-		errMsg.setBounds(340, 414, 256, 23);
+		errMsg.setBounds(340, 414, 334, 23);
 		errMsg.setForeground(Color.red);
 		frame.getContentPane().add(errMsg);
 		
@@ -224,6 +225,9 @@ public class Main {
 				}
 				else if(nameTextField.getText().equals("") || priTextField.getText().equals("") || descTextPane.getText().equals("") || dueDateYR.getSelectedItem().toString().equals("YEAR") || dueDateMT.getSelectedItem().toString().equals("MONTH") || dueDateDY.getSelectedItem().toString().equals("DAY")) {
 					errMsg.setText("PLEASE FILL IN ALL THE FIELDS");
+					}
+				else if((Pattern.matches("[0-9]+", priTextField.getText())) == false){
+					errMsg.setText("PLEASE USE ONLY INTEGERS FOR PRIORITY");
 					}
 				else {
 					errMsg.setText("");
@@ -626,7 +630,7 @@ public class Main {
 				}
 			}
 		});
-		sortCheck.setBounds(10, 300, 132, 21);
+		sortCheck.setBounds(10, 300, 175, 21);
 		frame.getContentPane().add(sortCheck);
 		
 
