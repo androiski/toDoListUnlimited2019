@@ -139,15 +139,15 @@ public class Task implements Serializable
     	info = info + " | PRIORITY: " + priority;
     	if (status == 0)
     	{
-    	  info = info + " | STATUS: NOT STARTED";
+    	  info = info + " | NOT STARTED";
     	}
     	else if (status == 1)
     	{
-    	  info = info + " | STATUS: STARTED";
+    	  info = info + " | STARTED";
     	}
     	else if (status == 2)
     	{
-    	  info = info + " | STATUS: FINISHED";
+    	  info = info + " | FINISHED";
     	}
     	 
     	info = info + " | DESCRIPTION: " + desc;
