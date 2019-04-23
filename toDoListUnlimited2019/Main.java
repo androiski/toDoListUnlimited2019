@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JRadioButton;
 
 public class Main {
 
@@ -69,7 +70,7 @@ public class Main {
 	private void initialize() {
 		frame = new JFrame();
 		//3rd was 814
-		frame.setBounds(100, 100, 1500, 490);
+		frame.setBounds(100, 100, 1347, 490);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("To Do List Unlimited 2019");
@@ -114,30 +115,70 @@ public class Main {
 		frame.getContentPane().add(dueDateDY);
 		
 		JLabel tDateStarted = new JLabel("Started:");
-		tDateStarted.setBounds(10, 238, 63, 14);
+		tDateStarted.setBounds(10, 213, 63, 14);
 		frame.getContentPane().add(tDateStarted);
 		
 		JComboBox dateStartYR = new JComboBox();
 		dateStartYR.setEnabled(false);
 		dateStartYR.setModel(new DefaultComboBoxModel(new String[] {"YEAR", "2019", "2020", "2021", "2022", "2023", "2024"}));
-		dateStartYR.setBounds(61, 235, 69, 20);
+		dateStartYR.setBounds(73, 210, 69, 20);
 		frame.getContentPane().add(dateStartYR);
 		
 		JComboBox dateStartMT = new JComboBox();
 		dateStartMT.setEnabled(false);
 		dateStartMT.setModel(new DefaultComboBoxModel(new String[] {"MONTH", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
-		dateStartMT.setBounds(140, 235, 69, 20);
+		dateStartMT.setBounds(152, 210, 69, 20);
 		frame.getContentPane().add(dateStartMT);
 		
 		JComboBox dateStartDY = new JComboBox();
 		dateStartDY.setEnabled(false);
 		dateStartDY.setModel(new DefaultComboBoxModel(new String[] {"DAY", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		dateStartDY.setBounds(219, 235, 69, 20);
+		dateStartDY.setBounds(231, 210, 69, 20);
 		frame.getContentPane().add(dateStartDY);
 		
 		JCheckBox chckbxStarted = new JCheckBox("Started");
-		chckbxStarted.setBounds(10, 208, 97, 23);
+		chckbxStarted.setBounds(10, 183, 97, 23);
 		frame.getContentPane().add(chckbxStarted);
+		
+		JCheckBox chckbxFinished = new JCheckBox("Finished");
+		chckbxFinished.setBounds(10, 238, 99, 23);
+		frame.getContentPane().add(chckbxFinished);
+		
+		JLabel lblFinished = new JLabel("Finished:");
+		lblFinished.setBounds(12, 268, 63, 14);
+		frame.getContentPane().add(lblFinished);
+		
+		JComboBox dateFinYR = new JComboBox();
+		dateFinYR.setEnabled(false);
+		dateFinYR.setModel(new DefaultComboBoxModel(new String[] {"YEAR", "2019", "2020", "2021", "2022", "2023", "2024"}));
+		dateFinYR.setBounds(75, 262, 69, 20);
+		frame.getContentPane().add(dateFinYR);
+		
+		JComboBox dateFinMO = new JComboBox();
+		dateFinMO.setEnabled(false);
+		dateFinMO.setModel(new DefaultComboBoxModel(new String[] {"MONTH", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+		dateFinMO.setBounds(154, 262, 69, 20);
+		frame.getContentPane().add(dateFinMO);
+		
+		JComboBox dateFinDY = new JComboBox();
+		dateFinDY.setEnabled(false);
+		dateFinDY.setModel(new DefaultComboBoxModel(new String[] {"DAY", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		dateFinDY.setBounds(233, 262, 69, 20);
+		frame.getContentPane().add(dateFinDY);
+		chckbxFinished.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg1) {
+				if(chckbxFinished.isSelected()) {
+					dateFinYR.setEnabled(true);
+					dateFinMO.setEnabled(true);
+					dateFinDY.setEnabled(true);
+				}
+				else {
+					dateFinYR.setEnabled(false);
+					dateFinMO.setEnabled(false);
+					dateFinDY.setEnabled(false);
+				}
+			}
+		});
 		
 		JScrollPane descScrollPane = new JScrollPane();
 		descScrollPane.setBounds(102, 54, 175, 71);
@@ -148,7 +189,7 @@ public class Main {
 		
 		
 		JLabel errMsg = new JLabel("");
-		errMsg.setBounds(10, 285, 256, 23);
+		errMsg.setBounds(340, 414, 256, 23);
 		errMsg.setForeground(Color.red);
 		frame.getContentPane().add(errMsg);
 		
@@ -177,6 +218,9 @@ public class Main {
 			public void actionPerformed(ActionEvent arg0) {
 				if(chckbxStarted.isSelected() && (dateStartYR.getSelectedItem().toString().equals("YEAR") || dateStartMT.getSelectedItem().toString().equals("MONTH") || dateStartDY.getSelectedItem().toString().equals("DAY"))){
 					errMsg.setText("FILL IN DATE STARTED OR UNCHECK IT");
+				}
+				else if(chckbxFinished.isSelected() && (dateFinYR.getSelectedItem().toString().equals("YEAR") || dateFinMO.getSelectedItem().toString().equals("MONTH") || dateFinDY.getSelectedItem().toString().equals("DAY"))){
+					errMsg.setText("FILL IN DATE FINISHED OR UNCHECK IT");
 				}
 				else if(nameTextField.getText().equals("") || priTextField.getText().equals("") || descTextPane.getText().equals("") || dueDateYR.getSelectedItem().toString().equals("YEAR") || dueDateMT.getSelectedItem().toString().equals("MONTH") || dueDateDY.getSelectedItem().toString().equals("DAY")) {
 					errMsg.setText("PLEASE FILL IN ALL THE FIELDS");
@@ -318,23 +362,84 @@ public class Main {
 						startDate = startYr + startMo + startDa;
 						int stDate = Integer.parseInt(startDate);
 						newTask.setStarted(stDate);
+						newTask.setStartStr();
 						status = 1;
-						newTask.setName(name);
-						newTask.setDesc(desc);
-						int x = Integer.parseInt(pri);
-						newTask.setPri(x);
-						int dDate = Integer.parseInt(dueDate);
-						newTask.setDue(dDate);
+						//newTask.setName(name);
+						//newTask.setDesc(desc);
+						//int x = Integer.parseInt(pri);
+						//newTask.setPri(x);
+						//int dDate = Integer.parseInt(dueDate);
+						//newTask.setDue(dDate);
 					}
-					else
+					if(chckbxFinished.isSelected())
 					{
-						newTask.setName(name);
-						newTask.setDesc(desc);
-						int x = Integer.parseInt(pri);
-						newTask.setPri(x);
-						int dDate = Integer.parseInt(dueDate);
-						newTask.setDue(dDate);
+						finYr = dateFinYR.getSelectedItem().toString();
+						finMo = dateFinMO.getSelectedItem().toString();
+						finDa = dateFinDY.getSelectedItem().toString();
+						if(finMo.equals("January"))
+						{
+							finMo = "01";
+						}
+						else if(finMo.equals("February"))
+						{
+							finMo = "02";
+						}
+						else if(finMo.equals("March"))
+						{
+							finMo = "03";
+						}
+						else if(finMo.equals("April"))
+						{
+							finMo = "04";
+						}
+						else if(finMo.equals("May"))
+						{
+							finMo = "05";
+						}
+						else if(finMo.equals("June"))
+						{
+							finMo = "06";
+						}
+						else if(finMo.equals("July"))
+						{
+							finMo = "07";
+						}
+						else if(finMo.equals("August"))
+						{
+							finMo = "08";
+						}
+						else if(finMo.equals("September"))
+						{
+							finMo = "09";
+						}
+						else if(finMo.equals("October"))
+						{
+							finMo = "10";
+						}
+						else if(finMo.equals("November"))
+						{
+							finMo = "11";
+						}
+						else if(finMo.equals("December"))
+						{
+							finMo = "12";
+						}
+						finDate = finYr + finMo + finDa;
+						int fiDate = Integer.parseInt(finDate);
+						newTask.setFinished(fiDate);
+						newTask.setFinStr();
+						status = 2;
 					}
+					
+					newTask.setName(name);
+					newTask.setDesc(desc);
+					int x = Integer.parseInt(pri);
+					newTask.setPri(x);
+					int dDate = Integer.parseInt(dueDate);
+					newTask.setDue(dDate);
+					newTask.setDueStr();
+					newTask.setStatus(status);
+					
 					
 					int unique = 1;
 					if (nTasks >= 1)
@@ -364,14 +469,15 @@ public class Main {
 						descTextPane.setText("");
 						priTextField.setText("");
 						tasks.add(newTask);
-						updateTaskList();
 						nTasks++;
+						sortList();
+						updateTaskList();
 					}
 					
 				}
 			}
 		});
-		btnNewButton.setBounds(10, 319, 109, 22);
+		btnNewButton.setBounds(10, 329, 109, 22);
 		frame.getContentPane().add(btnNewButton);
 		
 		//listener to delete the selected index
@@ -420,7 +526,7 @@ public class Main {
 				updateTaskList();
 			}
 		});
-		editButton.setBounds(10, 417, 110, 23);
+		editButton.setBounds(10, 414, 110, 23);
 		frame.getContentPane().add(editButton);
 		
 		//SAVE BUTTON
@@ -457,7 +563,7 @@ public class Main {
 				}
 			}
 		});
-		saveButton.setBounds(140, 380, 109, 23);
+		saveButton.setBounds(129, 380, 109, 23);
 		frame.getContentPane().add(saveButton);
 		
 		//LOAD BUTTON
@@ -496,14 +602,32 @@ public class Main {
 				}
 			}
 		});
-		loadButton.setBounds(140, 417, 109, 23);
+		loadButton.setBounds(129, 414, 109, 23);
 		frame.getContentPane().add(loadButton);
 		
 		JScrollPane taskListscrollPane = new JScrollPane();
-		taskListscrollPane.setBounds(330, 10, 1450, 430);
+		taskListscrollPane.setBounds(330, 10, 1000, 393);
 		frame.getContentPane().add(taskListscrollPane);
 		taskList = new JList(selectTask);
 		taskListscrollPane.setViewportView(taskList);
+		
+		JRadioButton sortCheck = new JRadioButton("Sort by Description");
+		sortCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(sortCheck.isSelected()) {
+					sortBy = 1;
+					sortList();
+					updateTaskList();
+				}
+				else {
+					sortBy = 0;
+					sortList();
+					updateTaskList();
+				}
+			}
+		});
+		sortCheck.setBounds(10, 300, 132, 21);
+		frame.getContentPane().add(sortCheck);
 		
 
 		
@@ -512,10 +636,72 @@ public class Main {
 	
 	public void sortList()
 	{
-		//
+		//if sortBy = 0, we sort the tasks by priority
 		if (sortBy == 0)
 		{
-			
+			//copy Vector contents into a temporary array and sort inside of the array
+			Task[] sortList = new Task[nTasks];
+		    for (int i = 0; i < nTasks; i++)
+		    {
+		    	sortList[i] = (Task)tasks.get(i);
+		    }
+		    tasks.removeAllElements();
+		    //now to sort
+		    
+		    int i, j;
+		    for (j = 1; j < nTasks; j++)
+		    {
+		    	Task s = sortList[j];
+		    	i = j;
+		    	while (i > 0 && sortList[i - 1].getPri() > s.getPri())
+		    	{
+		    		sortList[i] = sortList[i - 1];
+		    		--i;
+		    	}
+		    	sortList[i] = s;
+		    }
+		    //nTasks = 0;
+		    for (int x = 0; x < sortList.length; x++)
+		    {
+		    	Task newTask = sortList[x];
+		    	tasks.add(x, newTask);
+		    	//updateTaskList();
+		    	//nTasks++;
+		    }
+		    
+		}
+		//sort by description
+		else if (sortBy == 1)
+		{
+			//copy Vector contents into a temporary array and sort inside of the array
+			Task[] sortList = new Task[nTasks];
+		    for (int i = 0; i < nTasks; i++)
+		    {
+		    	sortList[i] = (Task)tasks.get(i);
+		    }
+		    tasks.removeAllElements();
+		    //now to sort
+		    
+		    int i, j;
+		    for (j = 1; j < nTasks; j++)
+		    {
+		    	Task s = sortList[j];
+		    	i = j;
+		    	while (i > 0 && sortList[i - 1].getDesc().compareTo(s.getDesc()) > 0)
+		    	{
+		    		sortList[i] = sortList[i - 1];
+		    		--i;
+		    	}
+		    	sortList[i] = s;
+		    }
+		    //nTasks = 0;
+		    for (int x = 0; x < sortList.length; x++)
+		    {
+		    	Task newTask = sortList[x];
+		    	tasks.add(x, newTask);
+		    	//updateTaskList();
+		    	//nTasks++;
+		    }
 		}
 	}
 	
