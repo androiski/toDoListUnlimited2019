@@ -137,6 +137,19 @@ public class Task implements Serializable
     	String info;
     	info = "NAME: " + name;
     	info = info + " | PRIORITY: " + priority;
+    	if (status == 0)
+    	{
+    	  info = info + " | STATUS: NOT STARTED";
+    	}
+    	else if (status == 1)
+    	{
+    	  info = info + " | STATUS: STARTED";
+    	}
+    	else if (status == 2)
+    	{
+    	  info = info + " | STATUS: FINISHED";
+    	}
+    	 
     	info = info + " | DESCRIPTION: " + desc;
     	
     	return info;
