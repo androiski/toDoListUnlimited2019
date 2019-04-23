@@ -7,6 +7,9 @@ public class Task implements Serializable
      // declaration of variables
     private String name;
     private String desc;
+    private String dueString;
+    private String startString;
+    private String finString;
     private int priority;
     private int due;
     private int started;
@@ -33,6 +36,18 @@ public class Task implements Serializable
     public String getDesc()
     {
         return desc;
+    }
+    public String getDueStr()
+    {
+    	return dueString;
+    }
+    public String getStartStr()
+    {
+    	return startString;
+    }
+    public String getFinStr()
+    {
+    	return finString;
     }
     public int getPri()
     {
@@ -63,6 +78,39 @@ public class Task implements Serializable
     public void setDesc(String s)
     {
         desc = s;
+    }
+    public void setDueStr()
+    {
+    	String year;
+        String month;
+        String day;
+        String dueDate = Integer.toString(due);
+        year = dueDate.substring(0, 4);
+        month = dueDate.substring(4, 6);
+        day = dueDate.substring(6, 8);
+        dueString = day + "/" + month + "/" + year;
+    }
+    public void setStartStr()
+    {
+    	String year;
+        String month;
+        String day;
+        String dueDate = Integer.toString(started);
+        year = dueDate.substring(0, 4);
+        month = dueDate.substring(4, 6);
+        day = dueDate.substring(6, 8);
+        startString = day + "/" + month + "/" + year;
+    }
+    public void setFinStr()
+    {
+    	String year;
+        String month;
+        String day;
+        String dueDate = Integer.toString(finished);
+        year = dueDate.substring(0, 4);
+        month = dueDate.substring(4, 6);
+        day = dueDate.substring(6, 8);
+        finString = day + "/" + month + "/" + year;
     }
     public void setPri(int x)
     {
@@ -137,17 +185,19 @@ public class Task implements Serializable
     	String info;
     	info = "NAME: " + name;
     	info = info + " | PRIORITY: " + priority;
+    	info = info + " | DUE: " + dueString;
     	if (status == 0)
     	{
     	  info = info + " | NOT STARTED";
     	}
     	else if (status == 1)
     	{
-    	  info = info + " | STARTED";
+    	  info = info + " | STARTED on " + startString;
+    	  
     	}
     	else if (status == 2)
     	{
-    	  info = info + " | FINISHED";
+    	  info = info + " | FINISHED on " + finString;
     	}
     	 
     	info = info + " | DESCRIPTION: " + desc;

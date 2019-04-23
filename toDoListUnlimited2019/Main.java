@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JRadioButton;
 
 public class Main {
 
@@ -69,7 +70,7 @@ public class Main {
 	private void initialize() {
 		frame = new JFrame();
 		//3rd was 814
-		frame.setBounds(100, 100, 1500, 490);
+		frame.setBounds(100, 100, 1347, 490);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("To Do List Unlimited 2019");
@@ -188,7 +189,7 @@ public class Main {
 		
 		
 		JLabel errMsg = new JLabel("");
-		errMsg.setBounds(10, 293, 256, 23);
+		errMsg.setBounds(340, 414, 256, 23);
 		errMsg.setForeground(Color.red);
 		frame.getContentPane().add(errMsg);
 		
@@ -361,6 +362,7 @@ public class Main {
 						startDate = startYr + startMo + startDa;
 						int stDate = Integer.parseInt(startDate);
 						newTask.setStarted(stDate);
+						newTask.setStartStr();
 						status = 1;
 						//newTask.setName(name);
 						//newTask.setDesc(desc);
@@ -425,6 +427,7 @@ public class Main {
 						finDate = finYr + finMo + finDa;
 						int fiDate = Integer.parseInt(finDate);
 						newTask.setFinished(fiDate);
+						newTask.setFinStr();
 						status = 2;
 					}
 					
@@ -434,6 +437,7 @@ public class Main {
 					newTask.setPri(x);
 					int dDate = Integer.parseInt(dueDate);
 					newTask.setDue(dDate);
+					newTask.setDueStr();
 					newTask.setStatus(status);
 					
 					
@@ -602,10 +606,28 @@ public class Main {
 		frame.getContentPane().add(loadButton);
 		
 		JScrollPane taskListscrollPane = new JScrollPane();
-		taskListscrollPane.setBounds(330, 10, 1450, 430);
+		taskListscrollPane.setBounds(330, 10, 1000, 393);
 		frame.getContentPane().add(taskListscrollPane);
 		taskList = new JList(selectTask);
 		taskListscrollPane.setViewportView(taskList);
+		
+		JRadioButton sortCheck = new JRadioButton("Sort by Description");
+		sortCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(sortCheck.isSelected()) {
+					sortBy = 1;
+					sortList();
+					updateTaskList();
+				}
+				else {
+					sortBy = 0;
+					sortList();
+					updateTaskList();
+				}
+			}
+		});
+		sortCheck.setBounds(10, 300, 132, 21);
+		frame.getContentPane().add(sortCheck);
 		
 
 		
