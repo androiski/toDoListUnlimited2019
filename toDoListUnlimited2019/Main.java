@@ -71,7 +71,7 @@ public class Main {
 	private void initialize() {
 		frame = new JFrame();
 		//3rd was 814
-		frame.setBounds(100, 100, 1347, 490);
+		frame.setBounds(100, 100, 1023, 490);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("To Do List Unlimited 2019");
@@ -84,7 +84,7 @@ public class Main {
 		frame.getContentPane().add(tName);
 		
 		priTextField = new JTextField();
-		priTextField.setBounds(102, 130, 96, 20);
+		priTextField.setBounds(102, 130, 40, 20);
 		frame.getContentPane().add(priTextField);
 		priTextField.setColumns(10);
 		
@@ -102,17 +102,17 @@ public class Main {
 		
 		JComboBox dueDateYR = new JComboBox();
 		dueDateYR.setModel(new DefaultComboBoxModel(new String[] {"YEAR", "2019", "2020", "2021", "2022", "2023", "2024"}));
-		dueDateYR.setBounds(51, 154, 69, 22);
+		dueDateYR.setBounds(73, 154, 69, 22);
 		frame.getContentPane().add(dueDateYR);
 		
 		JComboBox dueDateMT = new JComboBox();
 		dueDateMT.setModel(new DefaultComboBoxModel(new String[] {"MONTH", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
-		dueDateMT.setBounds(129, 154, 69, 22);
+		dueDateMT.setBounds(152, 154, 69, 22);
 		frame.getContentPane().add(dueDateMT);
 		
 		JComboBox dueDateDY = new JComboBox();
 		dueDateDY.setModel(new DefaultComboBoxModel(new String[] {"DAY", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		dueDateDY.setBounds(208, 154, 69, 22);
+		dueDateDY.setBounds(231, 154, 69, 22);
 		frame.getContentPane().add(dueDateDY);
 		
 		JLabel tDateStarted = new JLabel("Started:");
@@ -182,7 +182,7 @@ public class Main {
 		});
 		
 		JScrollPane descScrollPane = new JScrollPane();
-		descScrollPane.setBounds(102, 54, 175, 71);
+		descScrollPane.setBounds(102, 54, 198, 71);
 		frame.getContentPane().add(descScrollPane);
 		
 		JTextArea descTextPane = new JTextArea();
@@ -195,7 +195,7 @@ public class Main {
 		frame.getContentPane().add(errMsg);
 		
 		nameTextField = new JTextField();
-		nameTextField.setBounds(102, 24, 177, 20);
+		nameTextField.setBounds(102, 19, 198, 20);
 		frame.getContentPane().add(nameTextField);
 		nameTextField.setColumns(10);
 		chckbxStarted.addActionListener(new ActionListener() {
@@ -610,7 +610,7 @@ public class Main {
 		frame.getContentPane().add(loadButton);
 		
 		JScrollPane taskListscrollPane = new JScrollPane();
-		taskListscrollPane.setBounds(330, 10, 1000, 393);
+		taskListscrollPane.setBounds(330, 10, 667, 393);
 		frame.getContentPane().add(taskListscrollPane);
 		taskList = new JList(selectTask);
 		taskListscrollPane.setViewportView(taskList);
@@ -632,6 +632,17 @@ public class Main {
 		});
 		sortCheck.setBounds(10, 300, 175, 21);
 		frame.getContentPane().add(sortCheck);
+		
+		JButton RESET = new JButton("RESET");
+		RESET.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tasks.removeAllElements();
+				nTasks = 0;
+				updateTaskList();
+			}
+		});
+		RESET.setBounds(888, 424, 109, 23);
+		frame.getContentPane().add(RESET);
 		
 
 		
